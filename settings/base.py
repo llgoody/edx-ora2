@@ -3,7 +3,6 @@ Base settings for ORA2.
 """
 
 import os
-from celery import Celery
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -93,6 +92,12 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -120,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     # Third party
-    'django_extensions',
+    'django_nose',
 
     # XBlock
     'workbench',
@@ -149,14 +154,6 @@ CACHES = {
 
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-# Celery initialization and configuration
+LOCALE_PATHS = [os.path.join(BASE_DIR, "openassessment", "locale")]
 
-class Config:
-    # We run Celery in "always eager" mode in the test suite and local dev,
-    # which executes tasks synchronously instead of using the task queue.
-    CELERY_ALWAYS_EAGER = True
-    CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-
-APP = Celery()
-APP.config_from_object(Config)
-APP.autodiscover_tasks(lambda: INSTALLED_APPS)
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
