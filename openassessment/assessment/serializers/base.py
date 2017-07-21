@@ -211,8 +211,8 @@ def full_assessment_dict(assessment, rubric_dict=None):
     # `CriterionOption` again, we simply index into the places we expect them to
     # be from the big, saved `Rubric` serialization.
     parts = []
-    for part in assessment.parts.all().select_related("criterion", "option"):
-        criterion_dict = rubric_dict["criteria"][part.criterion.order_num]
+    for part in assessment.parts.order_by('criterion__order_num').all().select_related("criterion", "option"):
+        criterion_dict = dict(rubric_dict["criteria"][part.criterion.order_num])
         options_dict = None
         if part.option is not None:
             options_dict = criterion_dict["options"][part.option.order_num]

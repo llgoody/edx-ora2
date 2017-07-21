@@ -54,7 +54,7 @@ class UpdateWorkflowSignalTest(CacheResetTest):
             mock_update.assert_called_once_with(None)
 
     @ddt.data(DatabaseError, IOError)
-    @mock.patch.object(AssessmentWorkflow.objects, 'get')
+    @mock.patch('openassessment.workflow.models.AssessmentWorkflow.objects.get')
     def test_errors(self, error, mock_call):
         # Start a workflow for the submission
         workflow_api.create_workflow(self.submission_uuid, ['self'])

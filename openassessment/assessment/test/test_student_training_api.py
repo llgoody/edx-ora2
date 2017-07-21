@@ -210,13 +210,13 @@ class StudentTrainingAssessmentTest(CacheResetTest):
         with self.assertRaises(StudentTrainingRequestError):
             training_api.get_training_example("no_such_submission", RUBRIC, EXAMPLES)
 
-    @patch.object(StudentTrainingWorkflow.objects, 'get')
+    @patch('openassessment.assessment.models.student_training.StudentTrainingWorkflow.objects.get')
     def test_get_num_completed_database_error(self, mock_db):
         mock_db.side_effect = DatabaseError("Kaboom!")
         with self.assertRaises(StudentTrainingInternalError):
             training_api.get_num_completed(self.submission_uuid)
 
-    @patch.object(StudentTrainingWorkflow.objects, 'get')
+    @patch('openassessment.assessment.models.student_training.StudentTrainingWorkflow.objects.get')
     def test_get_training_example_database_error(self, mock_db):
         mock_db.side_effect = DatabaseError("Kaboom!")
         with self.assertRaises(StudentTrainingInternalError):
@@ -224,7 +224,7 @@ class StudentTrainingAssessmentTest(CacheResetTest):
 
     def test_assess_training_example_database_error(self):
         training_api.get_training_example(self.submission_uuid, RUBRIC, EXAMPLES)
-        with patch.object(StudentTrainingWorkflow.objects, 'get') as mock_db:
+        with patch('openassessment.assessment.models.student_training.StudentTrainingWorkflow.objects.get') as mock_db:
             mock_db.side_effect = DatabaseError("Kaboom!")
             with self.assertRaises(StudentTrainingInternalError):
                 training_api.assess_training_example(self.submission_uuid, EXAMPLES[0]['options_selected'])

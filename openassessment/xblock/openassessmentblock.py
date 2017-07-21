@@ -10,7 +10,6 @@ import pkg_resources
 import pytz
 
 from django.conf import settings
-from django.template.context import Context
 from django.template.loader import get_template
 from webob import Response
 from lazy import lazy
@@ -83,7 +82,6 @@ UI_MODELS = {
 
 VALID_ASSESSMENT_TYPES = [
     "student-training",
-    "example-based-assessment",
     "peer-assessment",
     "self-assessment",
     "staff-assessment"
@@ -491,8 +489,7 @@ class OpenAssessmentBlock(MessageMixin,
         Creates a fragment for display.
 
         """
-        context = Context(context_dict)
-        fragment = Fragment(template.render(context))
+        fragment = Fragment(template.render(context_dict))
 
         if additional_css is None:
             additional_css = []
@@ -644,10 +641,6 @@ class OpenAssessmentBlock(MessageMixin,
             (
                 "OpenAssessmentBlock Unicode",
                 load('static/xml/unicode.xml')
-            ),
-            (
-                "OpenAssessmentBlock Example Based Rubric",
-                load('static/xml/example_based_example.xml')
             ),
             (
                 "OpenAssessmentBlock Poverty Rubric",
@@ -825,8 +818,7 @@ class OpenAssessmentBlock(MessageMixin,
             context_dict = {}
 
         template = get_template(path)
-        context = Context(context_dict)
-        return Response(template.render(context), content_type='application/html', charset='UTF-8')
+        return Response(template.render(context_dict), content_type='application/html', charset='UTF-8')
 
     def add_xml_to_node(self, node):
         """
@@ -844,7 +836,7 @@ class OpenAssessmentBlock(MessageMixin,
         Returns:
             Response: A response object with an HTML body.
         """
-        context = Context({'error_msg': error_msg})
+        context = {'error_msg': error_msg}
         template = get_template('openassessmentblock/oa_error.html')
         return Response(template.render(context), content_type='application/html', charset='UTF-8')
 

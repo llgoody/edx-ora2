@@ -17,7 +17,6 @@ class WorkflowMixin(object):
     # Dictionary mapping assessment names (e.g. peer-assessment)
     # to the corresponding workflow step names.
     ASSESSMENT_STEP_NAMES = {
-        "example-based-assessment": "ai",
         "self-assessment": "self",
         "peer-assessment": "peer",
         "student-training": "training",
@@ -54,14 +53,7 @@ class WorkflowMixin(object):
 
         """
         steps = self._create_step_list()
-        ai_module = self.get_assessment_module('example-based-assessment')
-        on_init_params = {
-            'ai': {
-                'rubric': create_rubric_dict(self.prompts, self.rubric_criteria_with_labels),
-                'algorithm_id': ai_module["algorithm_id"] if ai_module else None
-            }
-        }
-        workflow_api.create_workflow(submission_uuid, steps, on_init_params=on_init_params)
+        workflow_api.create_workflow(submission_uuid, steps, on_init_params={})
 
     def workflow_requirements(self):
         """

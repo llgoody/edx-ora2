@@ -3,7 +3,7 @@ from .. import exceptions
 
 from django.conf import settings
 import django.core.cache
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.utils.encoding import smart_text
 
 
@@ -47,7 +47,7 @@ class Backend(BaseBackend):
 
     def _get_url(self, key):
         key_name = self._get_key_name(key)
-        url = reverse("openassessment-filesystem-storage", kwargs={'key': key_name})
+        url = reverse_lazy("openassessment-filesystem-storage", kwargs={'key': key_name})
         return url
 
 

@@ -89,12 +89,10 @@ class RubricValidationTest(TestCase):
     def test_valid_rubric(self, data):
         current_rubric = data.get('current_rubric')
         is_released = data.get('is_released', False)
-        is_example_based = data.get('is_example_based', False)
         success, msg = validate_rubric(
             data['rubric'],
             current_rubric,
             is_released,
-            is_example_based,
             STUB_I18N
         )
         self.assertTrue(success)
@@ -104,9 +102,8 @@ class RubricValidationTest(TestCase):
     def test_invalid_rubric(self, data):
         current_rubric = data.get('current_rubric')
         is_released = data.get('is_released', False)
-        is_example_based = data.get('is_example_based', False)
         success, msg = validate_rubric(
-            data['rubric'], current_rubric, is_released, is_example_based, STUB_I18N
+            data['rubric'], current_rubric, is_released, STUB_I18N
         )
         self.assertFalse(success)
         self.assertGreater(len(msg), 0)
@@ -265,13 +262,6 @@ class ValidationIntegrationTest(TestCase):
 
     ASSESSMENTS = [
         {
-            "name": "example-based-assessment",
-            "start": None,
-            "due": None,
-            "examples": EXAMPLES,
-            "algorithm_id": "ease"
-        },
-        {
             "name": "student-training",
             "start": None,
             "due": None,
@@ -326,26 +316,6 @@ class ValidationIntegrationTest(TestCase):
         is_valid, msg = self.validator(self.RUBRIC, mutated_assessments)
         self.assertFalse(is_valid)
         self.assertEqual(msg, u'Example 1 has an invalid option for "vocabulary": "Invalid option!"')
-
-    def test_example_based_assessment_duplicate_point_values(self):
-        # Mutate the rubric so that two options have the same point value
-        # for a particular criterion.
-        # This should cause a validation error with example-based assessment.
-        mutated_rubric = copy.deepcopy(self.RUBRIC)
-        mutated_rubric['criteria'][0]['options'] = copy.deepcopy(self.CRITERION_OPTIONS)
-        for option in mutated_rubric['criteria'][0]['options']:
-            option['points'] = 1
-
-        # Expect a validation error
-        is_valid, msg = self.validator(mutated_rubric, self.ASSESSMENTS)
-        self.assertFalse(is_valid)
-        self.assertEqual(msg, u'Example-based assessments cannot have duplicate point values.')
-
-        # But it should be okay if we don't have example-based assessment
-        no_example_based = copy.deepcopy(self.ASSESSMENTS)[1:]
-        is_valid, msg = self.validator(mutated_rubric, no_example_based)
-        self.assertTrue(is_valid)
-        self.assertEqual(msg, u'')
 
     def test_leaderboard_num_validation(self):
         self._assert_leaderboard_num_valid(-1, False)
