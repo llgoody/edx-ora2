@@ -7,7 +7,6 @@ This command differs from upload_oa_data in that it places all the data into one
 Generates the same format as the instructor dashboard downloads.
 """
 import csv
-from optparse import make_option
 import os
 
 from django.core.management.base import BaseCommand, CommandError

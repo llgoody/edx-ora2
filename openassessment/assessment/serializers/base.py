@@ -5,13 +5,12 @@ Serializers common to all assessment types.
 from copy import deepcopy
 import logging
 
-from django.core.cache import cache
 from rest_framework import serializers
-from rest_framework.fields import IntegerField, DateTimeField
-from openassessment.assessment.models import (
-    Assessment, AssessmentPart, Criterion, CriterionOption, Rubric,
-)
+from rest_framework.fields import DateTimeField, IntegerField
 
+from django.core.cache import cache
+
+from openassessment.assessment.models import Assessment, AssessmentPart, Criterion, CriterionOption, Rubric
 
 logger = logging.getLogger(__name__)
 

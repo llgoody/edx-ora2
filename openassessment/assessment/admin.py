@@ -7,9 +7,7 @@ from django.contrib import admin
 from django.core.urlresolvers import reverse_lazy
 from django.utils import html
 
-from openassessment.assessment.models import (
-    Assessment, AssessmentFeedback, PeerWorkflow, PeerWorkflowItem, Rubric,
-)
+from openassessment.assessment.models import Assessment, AssessmentFeedback, PeerWorkflow, PeerWorkflowItem, Rubric
 from openassessment.assessment.serializers import RubricSerializer
 
 

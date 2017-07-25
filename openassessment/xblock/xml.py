@@ -2,12 +2,13 @@
 Serialize and deserialize OpenAssessment XBlock content to/from XML.
 """
 from uuid import uuid4 as uuid
-import lxml.etree as etree
-import pytz
+
 import dateutil.parser
 import defusedxml.ElementTree as safe_etree
-from data_conversion import update_assessments_format
-from defaults import DEFAULT_RUBRIC_FEEDBACK_TEXT
+import lxml.etree as etree
+import pytz
+
+from openassessment.xblock.data_conversion import update_assessments_format
 
 
 class UpdateFromXmlError(Exception):

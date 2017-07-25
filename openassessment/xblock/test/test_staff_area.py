@@ -4,20 +4,18 @@ Tests for the staff area.
 """
 from collections import namedtuple
 import json
-import datetime
 import urllib
+
 from mock import MagicMock, Mock, call, patch
-from django.test.utils import override_settings
 
 from openassessment.assessment.api import peer as peer_api
 from openassessment.assessment.api import self as self_api
 from openassessment.assessment.api import staff as staff_api
-from openassessment.workflow import api as workflow_api
 from openassessment.fileupload.exceptions import FileUploadInternalError
-from submissions import api as sub_api
-
+from openassessment.workflow import api as workflow_api
 from openassessment.xblock.data_conversion import prepare_submission_for_serialization
-from openassessment.xblock.test.base import scenario, XBlockHandlerTestCase
+from openassessment.xblock.test.base import XBlockHandlerTestCase, scenario
+from submissions import api as sub_api
 
 STUDENT_ITEM = dict(
     student_id="Bob",

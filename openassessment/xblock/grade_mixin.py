@@ -2,19 +2,18 @@
 Grade step in the OpenAssessment XBlock.
 """
 import copy
+
 from lazy import lazy
+from xblock.core import XBlock
 
 from django.utils.translation import ugettext as _
 
-from xblock.core import XBlock
-
+from data_conversion import create_submission_dict
 from openassessment.assessment.api import peer as peer_api
 from openassessment.assessment.api import self as self_api
 from openassessment.assessment.api import staff as staff_api
-from openassessment.assessment.errors import SelfAssessmentError, PeerAssessmentError
+from openassessment.assessment.errors import PeerAssessmentError, SelfAssessmentError
 from submissions import api as sub_api
-
-from data_conversion import create_submission_dict
 
 
 class GradeMixin(object):

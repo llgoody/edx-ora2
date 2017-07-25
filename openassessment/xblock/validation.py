@@ -2,11 +2,12 @@
 Validate changes to an XBlock before it is updated.
 """
 from collections import Counter
-from submissions.api import MAX_TOP_SUBMISSIONS
-from openassessment.assessment.serializers import rubric_from_dict, InvalidRubric
+
 from openassessment.assessment.api.student_training import validate_training_examples
-from openassessment.xblock.resolve_dates import resolve_dates, DateValidationError, InvalidDateFormat
+from openassessment.assessment.serializers import InvalidRubric, rubric_from_dict
 from openassessment.xblock.data_conversion import convert_training_examples_list_to_dict
+from openassessment.xblock.resolve_dates import DateValidationError, InvalidDateFormat, resolve_dates
+from submissions.api import MAX_TOP_SUBMISSIONS
 
 
 def _match_by_order(items, others):

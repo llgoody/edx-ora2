@@ -2,12 +2,13 @@
 """
 Tests for management command that uploads submission/assessment data.
 """
-from StringIO import StringIO
 import tarfile
+
 import boto3
 import moto
-from openassessment.test_utils import CacheResetTest
+
 from openassessment.management.commands import upload_oa_data
+from openassessment.test_utils import CacheResetTest
 from openassessment.workflow import api as workflow_api
 from submissions import api as sub_api
 
@@ -67,4 +68,4 @@ class UploadDataTest(CacheResetTest):
 
         # Expect that we generated a URL for the bucket
         url = cmd.history[0]['url']
-        self.assertIn("ttps://s3.amazonaws.com/{}".format(self.BUCKET_NAME), url)
+        self.assertIn("https://s3.amazonaws.com/{}".format(self.BUCKET_NAME), url)

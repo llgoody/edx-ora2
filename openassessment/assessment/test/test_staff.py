@@ -3,23 +3,25 @@
 Tests for staff assessments.
 """
 import copy
-import mock
 from datetime import timedelta
 
-from django.db import DatabaseError
-from django.test.utils import override_settings
-from django.utils.timezone import now
-from ddt import ddt, data, unpack
+from ddt import data, ddt, unpack
+import mock
 
-from .constants import OPTIONS_SELECTED_DICT, RUBRIC, RUBRIC_OPTIONS, RUBRIC_POSSIBLE_POINTS, STUDENT_ITEM
-from openassessment.test_utils import CacheResetTest
-from openassessment.assessment.api import staff as staff_api, peer as peer_api
-from openassessment.assessment.api.self import create_assessment as self_assess
+from django.db import DatabaseError
+from django.utils.timezone import now
+
+from openassessment.assessment.api import peer as peer_api
+from openassessment.assessment.api import staff as staff_api
 from openassessment.assessment.api.peer import create_assessment as peer_assess
-from openassessment.assessment.models import Assessment, StaffWorkflow
-from openassessment.assessment.errors import StaffAssessmentRequestError, StaffAssessmentInternalError
+from openassessment.assessment.api.self import create_assessment as self_assess
+from openassessment.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
+from openassessment.assessment.models import StaffWorkflow
+from openassessment.test_utils import CacheResetTest
 from openassessment.workflow import api as workflow_api
 from submissions import api as sub_api
+
+from .constants import OPTIONS_SELECTED_DICT, RUBRIC, RUBRIC_OPTIONS, RUBRIC_POSSIBLE_POINTS, STUDENT_ITEM
 
 
 @ddt

@@ -1,20 +1,19 @@
 # coding=utf-8
-import datetime
-import pytz
 import copy
+import datetime
 
-from django.db import DatabaseError, IntegrityError
-from django.utils import timezone
 from ddt import ddt, file_data
 from mock import patch
 from nose.tools import raises
+import pytz
 
-from openassessment.test_utils import CacheResetTest
+from django.db import DatabaseError, IntegrityError
+from django.utils import timezone
+
 from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.models import (
-    Assessment, AssessmentPart, AssessmentFeedback, AssessmentFeedbackOption,
-    PeerWorkflow, PeerWorkflowItem
-)
+from openassessment.assessment.models import (Assessment, AssessmentFeedback, AssessmentFeedbackOption, AssessmentPart,
+                                              PeerWorkflow, PeerWorkflowItem)
+from openassessment.test_utils import CacheResetTest
 from openassessment.workflow import api as workflow_api
 from submissions import api as sub_api
 

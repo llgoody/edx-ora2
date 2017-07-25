@@ -3,15 +3,18 @@
 Tests for training assessment type.
 """
 import copy
-from django.db import DatabaseError
+
 import ddt
 from mock import patch
-from openassessment.test_utils import CacheResetTest
-from .constants import STUDENT_ITEM, ANSWER, RUBRIC, EXAMPLES
-from submissions import api as sub_api
+
+from django.db import DatabaseError
+
 from openassessment.assessment.api import student_training as training_api
-from openassessment.assessment.errors import StudentTrainingRequestError, StudentTrainingInternalError
-from openassessment.assessment.models import StudentTrainingWorkflow
+from openassessment.assessment.errors import StudentTrainingInternalError, StudentTrainingRequestError
+from openassessment.test_utils import CacheResetTest
+from submissions import api as sub_api
+
+from .constants import ANSWER, EXAMPLES, RUBRIC, STUDENT_ITEM
 
 
 @ddt.ddt

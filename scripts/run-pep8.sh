@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAX_PEP8_VIOLATIONS=62  # TODO nomerge - but also stop failing during development
+MAX_PEP8_VIOLATIONS=60
 
 mkdir -p test/logs
 PEP8_VIOLATIONS=test/logs/pep8.txt

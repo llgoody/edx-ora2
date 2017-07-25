@@ -1,30 +1,26 @@
 # -*- coding: utf-8 -*-
 
-import boto3
-import ddt
-
 import json
-from mock import patch, Mock
 import os
 import shutil
 import tempfile
 import urllib
 from urlparse import urlparse
 
-from django.conf import settings
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import get_user_model
-
+import boto3
+import ddt
+from mock import Mock, patch
 from moto import mock_s3
-from mock import patch
 from nose.tools import raises
 
-from openassessment.fileupload import api
-from openassessment.fileupload import exceptions
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse_lazy
+from django.test import TestCase
+from django.test.utils import override_settings
+
+from openassessment.fileupload import api, exceptions, urls
 from openassessment.fileupload import views_filesystem as views
-from openassessment.fileupload import urls
 from openassessment.fileupload.backends.base import Settings as FileUploadSettings
 from openassessment.fileupload.backends.filesystem import get_cache as get_filesystem_cache
 

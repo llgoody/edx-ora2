@@ -1,9 +1,12 @@
-import boto3
 import logging
+
+import boto3
+
 from django.conf import settings
 
-from .base import BaseBackend
 from ..exceptions import FileUploadInternalError
+from .base import BaseBackend
+
 logger = logging.getLogger("openassessment.fileupload.api")
 
 

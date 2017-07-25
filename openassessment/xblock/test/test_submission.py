@@ -3,21 +3,22 @@
 Test submission to the OpenAssessment XBlock.
 """
 
-import json
 import datetime as dt
+import json
+
 import boto3
-from django.test.utils import override_settings
-from mock import patch, Mock
+from mock import Mock, patch
 from moto import mock_s3
 import pytz
 
-from submissions import api as sub_api
-from submissions.api import SubmissionRequestError, SubmissionInternalError
-from openassessment.fileupload import api
+from django.test.utils import override_settings
 
+from openassessment.fileupload import api
 from openassessment.workflow import api as workflow_api
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
 from openassessment.xblock.data_conversion import create_submission_dict, prepare_submission_for_serialization
+from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
+from submissions import api as sub_api
+from submissions.api import SubmissionInternalError, SubmissionRequestError
 
 from .base import XBlockHandlerTestCase, scenario
 

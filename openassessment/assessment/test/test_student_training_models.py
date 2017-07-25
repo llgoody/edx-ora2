@@ -2,13 +2,14 @@
 Tests for student training models.
 """
 import mock
+
 from django.db import IntegrityError
-from submissions import api as sub_api
+
+from openassessment.assessment.models import StudentTrainingWorkflow, StudentTrainingWorkflowItem
 from openassessment.test_utils import CacheResetTest
-from openassessment.assessment.models import (
-    StudentTrainingWorkflow, StudentTrainingWorkflowItem
-)
-from .constants import STUDENT_ITEM, ANSWER, EXAMPLES
+from submissions import api as sub_api
+
+from .constants import ANSWER, EXAMPLES, STUDENT_ITEM
 
 
 class StudentTrainingWorkflowTest(CacheResetTest):

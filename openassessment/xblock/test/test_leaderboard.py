@@ -7,15 +7,17 @@ from random import randint
 from urlparse import urlparse
 
 import boto3
-from django.test.utils import override_settings
-from django.core.cache import cache
 import mock
 from moto import mock_s3
 
-from submissions import api as sub_api
-from .base import XBlockHandlerTransactionTestCase, scenario
+from django.core.cache import cache
+from django.test.utils import override_settings
+
 from openassessment.fileupload import api
 from openassessment.xblock.data_conversion import create_submission_dict, prepare_submission_for_serialization
+from submissions import api as sub_api
+
+from .base import XBlockHandlerTransactionTestCase, scenario
 
 
 class TestLeaderboardRender(XBlockHandlerTransactionTestCase):
@@ -354,4 +356,3 @@ class TestLeaderboardRender(XBlockHandlerTransactionTestCase):
                     (_clean_query_string(file_info[0]), file_info[1]) for file_info in score['files']
                 ]
         return scores
-

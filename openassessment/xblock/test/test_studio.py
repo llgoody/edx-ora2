@@ -3,12 +3,14 @@ View-level tests for Studio view of OpenAssessment XBlock.
 """
 
 import copy
-import json
 import datetime as dt
-import pytz
+import json
+
 from ddt import ddt, file_data
 from mock import MagicMock
-from .base import scenario, XBlockHandlerTestCase
+import pytz
+
+from .base import XBlockHandlerTestCase, scenario
 
 
 @ddt

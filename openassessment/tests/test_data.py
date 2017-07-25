@@ -3,19 +3,20 @@
 Tests for openassessment data aggregation.
 """
 
-import os.path
-
 from StringIO import StringIO
 import csv
-from django.core.management import call_command
+import os.path
+
 import ddt
-from submissions import api as sub_api
+
+from django.core.management import call_command
+
+import openassessment.assessment.api.peer as peer_api
+from openassessment.data import CsvWriter, OraAggregateData
 from openassessment.test_utils import TransactionCacheResetTest
 from openassessment.tests.factories import *  # pylint: disable=wildcard-import
 from openassessment.workflow import api as workflow_api
-from openassessment.data import CsvWriter, OraAggregateData
-import openassessment.assessment.api.peer as peer_api
-
+from submissions import api as sub_api
 
 COURSE_ID = "Test_Course"
 

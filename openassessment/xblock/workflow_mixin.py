@@ -6,7 +6,6 @@ from xblock.core import XBlock
 
 from openassessment.workflow import api as workflow_api
 from openassessment.workflow.models import AssessmentWorkflowCancellation
-from openassessment.xblock.data_conversion import create_rubric_dict
 
 
 class WorkflowMixin(object):

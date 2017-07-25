@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAX_PYLINT_VIOLATIONS=495  # TODO nomerge - but also stop failing during development
+MAX_PYLINT_VIOLATIONS=425
 
 mkdir -p test/logs
 PYLINT_VIOLATIONS=test/logs/pylint.txt

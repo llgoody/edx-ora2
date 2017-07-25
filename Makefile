@@ -2,6 +2,7 @@
 # Install commands
 ##################
 install-python:
+	pip install -r requirements/django.txt
 	pip install -r requirements/base.txt --only-binary=lxml,libsass
 
 install-js:

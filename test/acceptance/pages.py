@@ -5,7 +5,7 @@ Page objects for UI-level acceptance tests.
 import os
 
 from bok_choy.page_object import PageObject
-from bok_choy.promise import EmptyPromise, BrokenPromise
+from bok_choy.promise import BrokenPromise, EmptyPromise
 
 ORA_SANDBOX_URL = os.environ.get('ORA_SANDBOX_URL')
 

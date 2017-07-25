@@ -9,21 +9,23 @@ need to then generate a matching migration for it using:
     ./manage.py schemamigration openassessment.workflow --auto
 
 """
-import logging
 import importlib
+import logging
 from uuid import uuid4
 
 from django.conf import settings
-from django.db import models, transaction, DatabaseError
+from django.db import DatabaseError, models, transaction
 from django.dispatch import receiver
 from django.utils.timezone import now
+
 from model_utils import Choices
 from model_utils.models import StatusModel, TimeStampedModel
-from submissions import api as sub_api
+
 from openassessment.assessment.errors.base import AssessmentError
 from openassessment.assessment.signals import assessment_complete_signal
-from .errors import AssessmentApiLoadError, AssessmentWorkflowError, AssessmentWorkflowInternalError
+from submissions import api as sub_api
 
+from .errors import AssessmentApiLoadError, AssessmentWorkflowError, AssessmentWorkflowInternalError
 
 logger = logging.getLogger('openassessment.workflow.models')
 

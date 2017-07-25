@@ -3,26 +3,24 @@ Studio editing view for OpenAssessment XBlock.
 """
 import copy
 import logging
-import pkg_resources
 from uuid import uuid4
-from xml import UpdateFromXmlError
 
-from django.conf import settings
-from django.template.loader import get_template
-from django.utils.translation import ugettext as _, ugettext_lazy
+import pkg_resources
 from voluptuous import MultipleInvalid
 from xblock.core import XBlock
 from xblock.fields import List, Scope
 from xblock.fragment import Fragment
 
+from django.conf import settings
+from django.template.loader import get_template
+from django.utils.translation import ugettext_lazy
+
+from openassessment.xblock.data_conversion import (create_rubric_dict, make_django_template_key,
+                                                   update_assessments_format)
 from openassessment.xblock.defaults import DEFAULT_EDITOR_ASSESSMENTS_ORDER, DEFAULT_RUBRIC_FEEDBACK_TEXT
-from openassessment.xblock.validation import validator
-from openassessment.xblock.data_conversion import (
-    create_rubric_dict, make_django_template_key, update_assessments_format
-)
-from openassessment.xblock.schema import EDITOR_UPDATE_SCHEMA
 from openassessment.xblock.resolve_dates import resolve_dates
-from openassessment.xblock.xml import serialize_examples_to_xml_str, parse_examples_from_xml_str
+from openassessment.xblock.schema import EDITOR_UPDATE_SCHEMA
+from openassessment.xblock.validation import validator
 
 logger = logging.getLogger(__name__)
 

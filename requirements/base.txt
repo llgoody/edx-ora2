@@ -1,3 +1,23 @@
-django>=1.8,<2.0
+# edX Internal Requirements
+# edx-submissions>=2.0.6,<3.0.0 #TODO: update after 2.0.6 release
+git+https://github.com/edx/edx-submissions.git@efischer/loosen_reqs#egg=edx-submissions==2.0.6 # TODO: and remove this line
+git+https://github.com/edx/django-rest-framework.git@1ceda7c086fddffd1c440cc86856441bbf0bd9cb#egg=djangorestframework==3.6.3
+git+https://github.com/edx/XBlock.git@xblock-1.0.1#egg=XBlock==1.0.1
+git+https://github.com/edx/xblock-sdk.git@v0.1.4#egg=xblock-sdk==0.1.4
 
--r tox.txt
+# Third Party Requirements
+boto3>=1.4.4,<2.0.0
+python-swiftclient>=3.1.0,<4.0.0
+defusedxml>=0.4.1,<1.0.0
+django-model-utils>=2.3.1,<3.0.0
+django-nose>=1.4.1,<2.0.0
+dogapi>=1.2.1,<2.0.0
+jsonfield>=1.0.3,<2.0.0
+lazy>=1.1,<2.0
+libsass>=0.10.0,<1.0.0
+loremipsum>=1.0.5,<2.0.0
+lxml>=3.4.4,<4.0.0
+path.py>=8.2.1,<9.0.0
+python-dateutil>=2.1,<3.0
+pytz
+voluptuous>=0.10.5,<1.0.0

@@ -2,13 +2,16 @@
 """
 Tests for training models and serializers (common to student and AI training).
 """
-import copy
-import mock
 from collections import OrderedDict
+import copy
+
+import mock
+
 from django.db import IntegrityError
-from openassessment.test_utils import CacheResetTest
+
 from openassessment.assessment.models import TrainingExample
 from openassessment.assessment.serializers import deserialize_training_examples, serialize_training_example
+from openassessment.test_utils import CacheResetTest
 
 
 class TrainingExampleSerializerTest(CacheResetTest):

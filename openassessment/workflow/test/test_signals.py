@@ -1,14 +1,16 @@
 """
 Tests for Django signals and receivers defined by the workflow API.
 """
-import mock
-from django.db import DatabaseError
 import ddt
-from submissions import api as sub_api
+import mock
+
+from django.db import DatabaseError
+
+from openassessment.assessment.signals import assessment_complete_signal
 from openassessment.test_utils import CacheResetTest
 from openassessment.workflow import api as workflow_api
 from openassessment.workflow.models import AssessmentWorkflow
-from openassessment.assessment.signals import assessment_complete_signal
+from submissions import api as sub_api
 
 
 @ddt.ddt

@@ -4,7 +4,7 @@ Schema for validating and sanitizing data received from the JavaScript client.
 
 import dateutil
 from pytz import utc
-from voluptuous import Schema, Required, All, Any, Range, In, Invalid
+from voluptuous import All, Any, In, Invalid, Range, Required, Schema
 
 
 def utf8_validator(value):

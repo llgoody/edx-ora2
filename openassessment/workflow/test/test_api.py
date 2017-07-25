@@ -1,21 +1,16 @@
-from django.db import DatabaseError
-from django.test.utils import override_settings
 import ddt
 from mock import patch
 from nose.tools import raises
 
-from openassessment.test_utils import CacheResetTest
+from django.db import DatabaseError
+from django.test.utils import override_settings
 
-from submissions.models import Submission
-import openassessment.workflow.api as workflow_api
 from openassessment.assessment.models import PeerWorkflow, StudentTrainingWorkflow
-import submissions.api as sub_api
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import self as self_api
-from openassessment.assessment.api import staff as staff_api
-from openassessment.workflow.models import AssessmentWorkflow, AssessmentApiLoadError
+from openassessment.test_utils import CacheResetTest
+import openassessment.workflow.api as workflow_api
 from openassessment.workflow.errors import AssessmentWorkflowInternalError
-
+from openassessment.workflow.models import AssessmentWorkflow
+import submissions.api as sub_api
 
 RUBRIC_DICT = {
     "criteria": [
@@ -182,7 +177,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
     @ddt.file_data('data/assessments.json')
     def test_need_valid_submission_uuid(self, data):
         # submission doesn't exist
-        with self.assertRaises(workflow_api.AssessmentWorkflowRequestError):
+        with self.assertRaises(workflow_api.AssessmentWorkflowInternalError):
             _ = workflow_api.create_workflow("xxxxxxxxxxx", data["steps"])
 
         # submission_uuid is the wrong type

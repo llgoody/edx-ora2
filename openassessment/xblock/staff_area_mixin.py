@@ -7,23 +7,18 @@ from functools import wraps
 import logging
 
 from xblock.core import XBlock
-from openassessment.assessment.errors import (
-    PeerAssessmentInternalError,
-)
-from openassessment.workflow.errors import (
-    AssessmentWorkflowError, AssessmentWorkflowInternalError
-)
-from openassessment.xblock.resolve_dates import DISTANT_PAST, DISTANT_FUTURE
-from openassessment.xblock.data_conversion import (
-    create_rubric_dict, convert_training_examples_list_to_dict, create_submission_dict
-)
-from submissions import api as submission_api
+
 from openassessment.assessment.api import peer as peer_api
 from openassessment.assessment.api import self as self_api
-from openassessment.workflow import api as workflow_api
 from openassessment.assessment.api import staff as staff_api
-from .user_data import get_user_preferences
+from openassessment.assessment.errors import PeerAssessmentInternalError
+from openassessment.workflow import api as workflow_api
+from openassessment.workflow.errors import AssessmentWorkflowError, AssessmentWorkflowInternalError
+from openassessment.xblock.data_conversion import create_submission_dict
+from openassessment.xblock.resolve_dates import DISTANT_FUTURE, DISTANT_PAST
+from submissions import api as submission_api
 
+from .user_data import get_user_preferences
 
 logger = logging.getLogger(__name__)
 

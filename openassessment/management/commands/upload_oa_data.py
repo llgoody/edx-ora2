@@ -1,16 +1,19 @@
 """
 Generate CSV files for submission and assessment data, then upload to S3.
 """
-import sys
+import datetime
 import os
 import os.path
-import datetime
 import shutil
-import tempfile
+import sys
 import tarfile
+import tempfile
+
 import boto3
-from django.core.management.base import BaseCommand, CommandError
+
 from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
+
 from openassessment.data import CsvWriter
 
 

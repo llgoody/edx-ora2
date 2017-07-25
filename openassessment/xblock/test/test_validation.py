@@ -5,15 +5,16 @@ Test OpenAssessment XBlock validation.
 
 import copy
 from datetime import datetime as dt
+
+import ddt
 import mock
 import pytz
-import ddt
+
 from django.test import TestCase
+
 from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
-from openassessment.xblock.validation import (
-    validator, validate_assessments, validate_rubric,
-    validate_dates, validate_assessment_examples, validate_submission
-)
+from openassessment.xblock.validation import (validate_assessment_examples, validate_assessments, validate_dates,
+                                              validate_rubric, validate_submission, validator)
 
 STUB_I18N = lambda x: x
 

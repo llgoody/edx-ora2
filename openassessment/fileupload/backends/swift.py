@@ -12,13 +12,16 @@ ORA2_SWIFT_KEY should correspond to Meta Temp-Url-Key configure in swift. Run
 '''
 
 import logging
-from django.conf import settings
-import swiftclient
 import urlparse
-import requests
 
-from .base import BaseBackend
+import requests
+import swiftclient
+
+from django.conf import settings
+
 from ..exceptions import FileUploadInternalError
+from .base import BaseBackend
+
 logger = logging.getLogger("openassessment.fileupload.api")
 
 # prefix paths with current version, in case we need to roll it at some point

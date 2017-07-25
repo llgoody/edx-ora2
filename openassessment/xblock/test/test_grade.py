@@ -3,18 +3,14 @@
 Tests for grade handlers in Open Assessment XBlock.
 """
 import copy
-import ddt
 import json
-import mock
-from django.test.utils import override_settings
+
+import ddt
 
 from openassessment.assessment.api import peer as peer_api
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
 
-from .base import (
-    scenario, SubmitAssessmentsMixin, XBlockHandlerTestCase,
-    PEER_ASSESSMENTS, SELF_ASSESSMENT, STAFF_GOOD_ASSESSMENT, STAFF_BAD_ASSESSMENT,
-)
+from .base import (PEER_ASSESSMENTS, SELF_ASSESSMENT, STAFF_BAD_ASSESSMENT, STAFF_GOOD_ASSESSMENT,
+                   SubmitAssessmentsMixin, XBlockHandlerTestCase, scenario)
 
 
 @ddt.ddt
